@@ -1,5 +1,6 @@
 import express, { Application, Request, Response, NextFunction } from 'express';
 import cors from 'cors';
+import authRoutes from './auth/auth.routes';
 
 const app: Application = express();
 
@@ -16,6 +17,9 @@ app.get('/api/health', (_req: Request, res: Response) => {
     timestamp: new Date().toISOString(),
   });
 });
+
+// ─── API Routes ───────────────────────────────────────────────────────────────
+app.use('/api/auth', authRoutes);
 
 // ─── 404 Handler ─────────────────────────────────────────────────────────────
 app.use((_req: Request, res: Response) => {
