@@ -18,7 +18,8 @@
     "test": "jest --runInBand",
     "test:watch": "jest --watch --runInBand",
     "test:coverage": "jest --coverage --runInBand",
-    "test:auth": "jest --runInBand --testPathPattern=src/tests/auth"
+    "test:auth": "jest --runInBand --testPathPattern=src/tests/auth",
+    "test:vehicles": "jest --runInBand --testPathPattern=src/tests/vehicles"
   },
   "keywords": [],
   "author": "",

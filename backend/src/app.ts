@@ -1,6 +1,7 @@
 import express, { Application, Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import authRoutes from './auth/auth.routes';
+import vehicleRoutes from './vehicles/vehicle.routes';
 import { authenticate } from './middleware/authenticate';
 
 const app: Application = express();
@@ -21,10 +22,9 @@ app.get('/api/health', (_req: Request, res: Response) => {
 
 // ─── API Routes ───────────────────────────────────────────────────────────────
 app.use('/api/auth', authRoutes);
+app.use('/api/vehicles', vehicleRoutes);
 
 // ─── Test Protected Route (used by middleware tests only) ─────────────────────
-// This route exists solely to verify the authenticate middleware works.
-// It is safe to keep in production — it simply reflects the authenticated user.
 app.get('/api/test/protected', authenticate, (req: Request, res: Response) => {
   res.status(200).json({
     status: 'success',
