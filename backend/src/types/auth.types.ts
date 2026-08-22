@@ -1,11 +1,17 @@
 /**
  * Shared TypeScript types for authentication.
- * These types are used across controllers, services, and validators.
+ * Used across controllers, services, validators, and middleware.
  */
 
 /** Shape of the registration request body */
 export interface RegisterRequestBody {
   name: string;
+  email: string;
+  password: string;
+}
+
+/** Shape of the login request body */
+export interface LoginRequestBody {
   email: string;
   password: string;
 }
@@ -18,4 +24,18 @@ export interface SafeUser {
   role: string;
   createdAt: Date;
   updatedAt: Date;
+}
+
+/** JWT payload structure stored inside the token */
+export interface JwtPayload {
+  userId: string;
+  role: string;
+  iat?: number;
+  exp?: number;
+}
+
+/** Extends Express Request to carry the authenticated user after middleware */
+export interface AuthenticatedUser {
+  userId: string;
+  role: string;
 }
