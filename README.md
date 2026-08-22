@@ -44,8 +44,4 @@ The frontend runs on `http://localhost:5173`.
 
 Copy `backend/.env.example` to `backend/.env` and fill in the values.
 
-## My AI Usage
 
-- **Tool Used**: Kiro (AI-powered development environment)
-- **How I used it**: Used Kiro to scaffold the initial project structure, configure TypeScript, Express, React, and Tailwind CSS, and generate boilerplate configuration files.
-- **Reflection**: AI assistance significantly sped up the initial setup phase, allowing focus on business logic and TDD practices rather than boilerplate configuration.
