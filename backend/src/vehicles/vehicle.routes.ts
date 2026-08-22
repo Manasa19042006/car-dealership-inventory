@@ -1,10 +1,12 @@
 import { Router } from 'express';
 import { create, list, search, update, remove } from './vehicle.controller';
+import { purchase, restock } from './inventory.controller';
 import {
   validateCreateVehicle,
   validateUpdateVehicle,
   validateSearchVehicles,
 } from './vehicle.validation';
+import { validateRestock } from './inventory.validation';
 import { authenticate } from '../middleware/authenticate';
 import { requireAdmin } from '../middleware/requireAdmin';
 
@@ -15,7 +17,7 @@ router.use(authenticate);
 
 /**
  * GET /api/vehicles/search
- * Must be defined BEFORE /:id to prevent Express matching "search" as an id.
+ * Must be defined BEFORE /:id routes to prevent Express treating "search" as an id.
  */
 router.get('/search', validateSearchVehicles, search);
 
@@ -35,9 +37,19 @@ router.post('/', validateCreateVehicle, create);
 router.put('/:id', validateUpdateVehicle, update);
 
 /**
- * DELETE /api/vehicles/:id
- * Admin only — requireAdmin runs after authenticate (already applied above).
+ * DELETE /api/vehicles/:id  — Admin only
  */
 router.delete('/:id', requireAdmin, remove);
+
+/**
+ * POST /api/vehicles/:id/purchase
+ * Any authenticated user can purchase.
+ */
+router.post('/:id/purchase', purchase);
+
+/**
+ * POST /api/vehicles/:id/restock  — Admin only
+ */
+router.post('/:id/restock', requireAdmin, validateRestock, restock);
 
 export default router;
