@@ -1,4 +1,7 @@
 # Car Dealership Inventory System
+//Admin login
+Email:    admin@cardealership.com
+Password: Admin123
 
 A full-stack Car Dealership Inventory System built with Node.js, TypeScript, Express (backend) and React, TypeScript, Tailwind CSS (frontend).
 
